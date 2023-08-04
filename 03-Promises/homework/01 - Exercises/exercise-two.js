@@ -11,7 +11,6 @@ module.exports = {
   problemBx: problemB
 };
 
-// corre cada problema dado como un argumento del command-line para procesar
 args.forEach(function (arg) {
   let problem = module.exports["problem" + arg];
   if (problem) problem();
@@ -19,15 +18,24 @@ args.forEach(function (arg) {
 
 function problemA() {
   // callback version
-  exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
-    exerciseUtils.blue(stanza);
-  });
-  exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
-    exerciseUtils.blue(stanza);
-  });
+  // exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
+  //   exerciseUtils.blue(stanza);
+  // });
+  // exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
+  //   exerciseUtils.blue(stanza);
+  // });
 
   // promise version
-  // Tu código acá:
+
+  exerciseUtils.promisifiedReadFile("./poem-two/stanza-01.txt")
+  .then((response)=>{
+    console.log(response)
+  })
+  exerciseUtils.promisifiedReadFile("./poem-two/stanza-01.txt")
+  .then((response)=>{
+    console.log(response)
+  })
+  .then(console.log("done"))
 }
 
 function problemB() {
