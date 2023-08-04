@@ -26,10 +26,26 @@ function problemA() {
       exerciseUtils.blue(stanza3);
     });
   });
+}
+
+  const problemaA = exerciseUtils.promisifiedReadFile("stanza-02.txt")
+    .then((resolve)=> blue(exerciseUtils.promisifiedReadFile("stanza-03.txt")))
+    .then(console.log("Done"))
+  
+    // const problemaA = exerciseUtils.promisifiedReadFile("stanza-02.txt")
+    // .then((content) => {
+    //   console.log(content); // Loguear el contenido de stanza-02.txt
+    //   return blue(exerciseUtils.promisifiedReadFile("stanza-03.txt"));
+    // })
+    // .then((content) => {
+    //   console.log(content); // Loguear el contenido de stanza-03.txt
+    //   console.log("Done");
+    // });
+  
 
   // promise version
   // Tu código acá:
-}
+
 
 function problemB() {
   // callback version
