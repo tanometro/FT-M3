@@ -1,5 +1,6 @@
 "use strict";
 
+const { log, error } = require("console");
 let exerciseUtils = require("./utils");
 
 let args = process.argv.slice(2).map(function (st) {
@@ -26,16 +27,15 @@ function problemA() {
   // });
 
   // promise version
-
-  exerciseUtils.promisifiedReadFile("./poem-two/stanza-01.txt")
+  Promise.all([
+    exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt"),
+    exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt")
+  ])
   .then((response)=>{
-    console.log(response)
+    console.log(response[0]);
+    console.log(response[1]);
+    console.log("Done");
   })
-  exerciseUtils.promisifiedReadFile("./poem-two/stanza-01.txt")
-  .then((response)=>{
-    console.log(response)
-  })
-  .then(console.log("done"))
 }
 
 function problemB() {
@@ -46,15 +46,35 @@ function problemB() {
   filenames[randIdx] = "wrong-file-name-" + (randIdx + 1) + ".txt";
 
   // callback version
-  filenames.forEach((filename) => {
-    exerciseUtils.readFile(filename, function (err, stanza) {
-      exerciseUtils.blue(stanza);
-      if (err) exerciseUtils.magenta(new Error(err));
-    });
-  });
+  // filenames.forEach((filename) => {
+  //   exerciseUtils.readFile(filename, function (err, stanza) {
+  //     exerciseUtils.blue(stanza);
+  //     if (err) exerciseUtils.magenta(new Error(err));
+  //   });
+  // });
 
   // promise version
   // Tu código acá:
+
+  function readStanza (index){
+    if(index >= filenames.length){
+      console.log("Done");
+      return;
+    }
+  }
+
+  exerciseUtils.promisifiedReadFile(filenames[index])
+  .then((response)=>{
+    console.log(response);
+    readStanza(index+1)
+  })
+  
+  .catch((error)=>{
+    exerciseUtils.magenta(new Error (error));
+    readStanza(index+1);
+  })
+
+  readStanza(0);
 }
 
 // EJERCICIO EXTRA

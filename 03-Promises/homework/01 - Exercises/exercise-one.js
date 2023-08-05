@@ -55,12 +55,11 @@ function problemB() {
   // Tu código acá:
   exerciseUtils.promisifiedReadFile("./poem-one/wrong-file-name.txt")
   .then((response)=> {
-    console.log(response);
-    return blue(response);
+    exerciseUtils.blue(response);
   }
   )
   .catch((error)=>{
-    exerciseUtils.magenta(error)
+    exerciseUtils.magenta(new Error (error))
    })
 }
 
