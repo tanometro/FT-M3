@@ -1,8 +1,15 @@
-const levelOne = (a, b) => {};
+const levelOne = (a, b) => {
+    return a + b;
+};
 
-const levelTwo = (letras) => {};
+const levelTwo = (letras) => {
+    if(letras.lenght < 2) letras;
+    
+};
 
-const levelThree = (a, b) => {};
+const levelThree = (a, b) => {
+   
+};
 
 const levelFour = (num) => {};
 
