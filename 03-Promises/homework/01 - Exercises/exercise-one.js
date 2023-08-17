@@ -19,7 +19,7 @@ args.forEach(function (arg) {
   if (problem) problem();
 });
 
-function problemA() {
+const problemA = async () => {
   // callback version
   // exerciseUtils.readFile("poem-one/stanza-02.txt", function (err, stanza2) {
 //     exerciseUtils.blue(stanza2);
@@ -28,16 +28,15 @@ function problemA() {
 //     });
 //   });
 // }
-  exerciseUtils.promisifiedReadFile("./poem-one/stanza-02.txt")
-    .then((response) => {
-      console.log(response); // Loguea el contenido de stanza-02.txt
-      exerciseUtils.blue(response); 
-      return exerciseUtils.promisifiedReadFile("./poem-one/stanza-03.txt"); // Retorna otra promesa para leer stanza-03.txt
-    })
-    .then((response) => {
-      console.log(response); // Loguea el contenido de stanza-03.txt
-      console.log('done'); // Loguea 'done' cuando ambas promesas se resuelvan correctamente
-    });
+
+const response1 = await exerciseUtils.promisifiedReadFile("./poem-one/stanza-02.txt")
+  console.log(response1); // Loguea el contenido de stanza-02.txt
+  exerciseUtils.blue(response); 
+  
+  const response2 = await exerciseUtils.promisifiedReadFile("./poem-one/stanza-03.txt"); // Retorna otra promesa para leer stanza-03.txt
+  console.log(response2); // Loguea el contenido de stanza-03.txt
+  console.log('done'); // Loguea 'done' cuando ambas promesas se resuelvan correctamente
+    // });
 }
 
 
